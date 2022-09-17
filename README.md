@@ -13,22 +13,22 @@ Construa uma API bem estruturada, respeitando as diretrizes de REST, SOLID e os 
 Trate as exceções que forem necessárias.
 
 Esta API deverá ter um cadastro do evento e um cadastro de reservas. Siga a estrutura apresentada abaixo:
-
 CityEvent:
 IdEvent             long         incremento PK
-Title                 string        not null
-Description            string        null
-DateHourEvent        DateTime    not null
-Local                string        not null
-Address                string        null
-Price                decimal        null
-Status                bit        not null
+Title               string       not null
+Description         string       null
+DateHourEvent       DateTime     not null
+Local               string       not null
+Address             string       null
+Price               decimal      null
+Status              bit          not null
 
 EventReservation:
-IdReservation        long        incremento PK
-IdEvent                long        not null FK
-PersonName            string        not null
+IdReservation       long        incremento PK
+IdEvent             long        not null FK
+PersonName          string      not null
 Quantity            long        not null
+CityEvent:
 
 Para o CityEvent, construa os métodos:
 - Inclusão de um novo evento; *Autenticação e Autorização admin
