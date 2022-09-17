@@ -32,7 +32,6 @@ namespace APIEvent.Infra.Data.Repository
                 throw;
             }
         }
-
         public EventReservation GetRervationById(long idReservation)
         {
             var query = "SELECT * FROM EventReservation where idReservation = @idReservation";
@@ -53,7 +52,6 @@ namespace APIEvent.Infra.Data.Repository
                 throw;
             }
         }
-
         public List<EventReservation> GetRervationByPersonNameTitle(string personName, string title)
         {
             var query = "SELECT * FROM EventReservation AS ev INNER JOIN CityEvent AS ci ON ev.IdEvent = ci.IdEvent WHERE ev.PersonName = @personName AND ci.Title LIKE CONCAT('%',@title,'%')";
@@ -75,7 +73,6 @@ namespace APIEvent.Infra.Data.Repository
                 throw;
             }
         }
-
         public List<EventReservation> GetReservationByIdEvent (long idEvent)
         {
             var query = "SELECT * FROM EventReservation WHERE IdEvent = @idEvent";
@@ -96,12 +93,14 @@ namespace APIEvent.Infra.Data.Repository
                 throw;
             }
         }
-
         public bool InsertReservation(EventReservation eventReservation)
         {
             var query = "INSERT INTO EventReservation VALUES (@idEvent, @personName, @quantity)";
 
-            var parameters = new DynamicParameters(eventReservation);
+            var parameters = new DynamicParameters();
+            parameters.Add("idEvent", eventReservation.IdEvent);
+            parameters.Add("personName", eventReservation.PersonName);
+            parameters.Add("quantity", eventReservation.Quantity);
 
             try
             {
@@ -116,7 +115,6 @@ namespace APIEvent.Infra.Data.Repository
                 throw;
             }
         }
-
         public bool UpdateReservation(long idReservation,EventReservation eventReservation)
         {
             var query = @"UPDATE EventReservation set idEvent = @idEvent, personName = @personName, quantity = @quantity
@@ -138,7 +136,6 @@ namespace APIEvent.Infra.Data.Repository
                 throw;
             }
         }
-
         public bool UpdateReservationQuantity(long idReservation, long quantity)
         {
             var query = @"UPDATE EventReservation set quantity = @quantity

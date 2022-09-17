@@ -124,7 +124,14 @@ namespace APIEvent.Infra.Data.Repository
         {
             var query = "INSERT INTO CityEvent VALUES (@title, @description, @dateHourEvent, @local, @address, @price, @status)";
 
-            var parameters = new DynamicParameters(cityEvent);
+            var parameters = new DynamicParameters();
+            parameters.Add("title", cityEvent.Title);
+            parameters.Add("description", cityEvent.Description);
+            parameters.Add("dateHourEvent", cityEvent.DateHourEvent);
+            parameters.Add("local", cityEvent.Local);
+            parameters.Add("address", cityEvent.Address);
+            parameters.Add("price", cityEvent.Price);
+            parameters.Add("status", cityEvent.Status);
 
             try
             {
