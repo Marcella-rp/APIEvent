@@ -19,9 +19,18 @@ namespace APIEvent.Infra.Data.Repository
         {
             var query = "SELECT * FROM EventReservation";
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Query<EventReservation>(query).ToList();
+                return conn.Query<EventReservation>(query).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public EventReservation GetRervationById(long idReservation)
@@ -31,9 +40,18 @@ namespace APIEvent.Infra.Data.Repository
             var parameters = new DynamicParameters();
             parameters.Add("idReservation", idReservation);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.QueryFirstOrDefault<EventReservation>(query, parameters);
+                return conn.QueryFirstOrDefault<EventReservation>(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public List<EventReservation> GetRervationByPersonNameTitle(string personName, string title)
@@ -44,9 +62,18 @@ namespace APIEvent.Infra.Data.Repository
             parameters.Add("personName", personName);
             parameters.Add("title", title);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Query<EventReservation>(query, parameters).ToList();
+                return conn.Query<EventReservation>(query, parameters).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public List<EventReservation> GetReservationByIdEvent (long idEvent)
@@ -56,9 +83,18 @@ namespace APIEvent.Infra.Data.Repository
             var parameters = new DynamicParameters();
             parameters.Add("idEvent", idEvent);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Query<EventReservation>(query, parameters).ToList();
+                return conn.Query<EventReservation>(query, parameters).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public bool InsertReservation(EventReservation eventReservation)
@@ -67,9 +103,18 @@ namespace APIEvent.Infra.Data.Repository
 
             var parameters = new DynamicParameters(eventReservation);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Execute(query, parameters) == 1;
+                return conn.Execute(query, parameters) == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public bool UpdateReservation(long idReservation,EventReservation eventReservation)
@@ -80,9 +125,18 @@ namespace APIEvent.Infra.Data.Repository
             eventReservation.IdReservation = idReservation;
             var parameters = new DynamicParameters(eventReservation);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Execute(query, parameters) == 1;
+                return conn.Execute(query, parameters) == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public bool UpdateReservationQuantity(long idReservation, long quantity)
@@ -94,9 +148,18 @@ namespace APIEvent.Infra.Data.Repository
             parameters.Add("idReservation", idReservation);
             parameters.Add("quantity", quantity);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Execute(query, parameters) == 1;
+                return conn.Execute(query, parameters) == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public bool DeleteReservation (long idReservation)
@@ -106,9 +169,18 @@ namespace APIEvent.Infra.Data.Repository
             var parameters = new DynamicParameters();
             parameters.Add("idReservation", idReservation);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Execute(query, parameters) == 1;
+                return conn.Execute(query, parameters) == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
     }
 }

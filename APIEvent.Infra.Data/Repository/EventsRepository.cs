@@ -19,9 +19,18 @@ namespace APIEvent.Infra.Data.Repository
         {
             var query = "SELECT * FROM CityEvent";
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Query<CityEvent>(query).ToList();
+                return conn.Query<CityEvent>(query).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public CityEvent GetEventById (long idEvent)
@@ -30,10 +39,19 @@ namespace APIEvent.Infra.Data.Repository
 
             var parameters = new DynamicParameters();
             parameters.Add("idEvent", idEvent);
-            
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.QueryFirstOrDefault<CityEvent>(query, parameters);
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+
+                return conn.QueryFirstOrDefault<CityEvent>(query, parameters);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public List<CityEvent> GetEventByTitle (string title)
@@ -43,9 +61,18 @@ namespace APIEvent.Infra.Data.Repository
             var parameters = new DynamicParameters();
             parameters.Add("title", title);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Query<CityEvent>(query, parameters).ToList();
+                return conn.Query<CityEvent>(query, parameters).ToList();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public List<CityEvent> GetEventByLocalDate(string local, DateTime date)
@@ -56,9 +83,18 @@ namespace APIEvent.Infra.Data.Repository
             parameters.Add("local", local);
             parameters.Add("dateHourEvent", date.Date);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Query<CityEvent>(query, parameters).ToList();
+                return conn.Query<CityEvent>(query, parameters).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public List<CityEvent> GetEventByRangePriceDate (decimal inicialPrice,decimal finalPrice, DateTime date)
@@ -70,9 +106,18 @@ namespace APIEvent.Infra.Data.Repository
             parameters.Add("finalPrice", finalPrice);
             parameters.Add("dateHourEvent", date.Date);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Query<CityEvent>(query, parameters).ToList();
+                return conn.Query<CityEvent>(query, parameters).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public bool InsertEvent (CityEvent cityEvent)
@@ -81,9 +126,18 @@ namespace APIEvent.Infra.Data.Repository
 
             var parameters = new DynamicParameters(cityEvent);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Execute(query, parameters) == 1;
+                return conn.Execute(query, parameters) == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public bool UpdateEvent(long IdEvent,CityEvent cityEvent)
@@ -95,10 +149,18 @@ namespace APIEvent.Infra.Data.Repository
             cityEvent.IdEvent = IdEvent;
 
             var parameters = new DynamicParameters(cityEvent);
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+                return conn.Execute(query, parameters) == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
 
-            return conn.Execute(query, parameters) == 1;
+                throw;
+            }
         }
 
         public bool DeleteEvent (long idEvent)
@@ -108,9 +170,18 @@ namespace APIEvent.Infra.Data.Repository
             var parameters = new DynamicParameters();
             parameters.Add("idEvent", idEvent);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Execute(query, parameters) == 1;
+                return conn.Execute(query, parameters) == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
 
         public bool UpdateStatus (long idEvent)
@@ -120,9 +191,18 @@ namespace APIEvent.Infra.Data.Repository
             var parameters = new DynamicParameters();
             parameters.Add("idEvent", idEvent);
 
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            try
+            {
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
 
-            return conn.Execute(query, parameters) == 1;
+                return conn.Execute(query, parameters) == 1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao conectar com o banco de dados.\nMessage: {ex.Message}\nTarget site: {ex.TargetSite}\nStack trace: {ex.StackTrace}");
+
+                throw;
+            }
         }
     }
 }
