@@ -44,8 +44,7 @@ namespace APIEvent.Controllers
         [HttpGet("/Reservations/personNameAndTitle")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[Authorize]
-        [AllowAnonymous]
+        [Authorize]
 
         public ActionResult<EventReservation> GetEventByPersonName(string personName, string title)
         {
@@ -60,8 +59,8 @@ namespace APIEvent.Controllers
         [HttpPost("/Reservations")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[Authorize]
-        [AllowAnonymous]
+        [ServiceFilter(typeof(AssureReservationNotExistActionFilter))]
+        [Authorize]
         public ActionResult<EventReservation> PostReservations(EventReservation eventReservation)
         {
             if (!_reservationsService.InsertReservation(eventReservation))
@@ -75,8 +74,7 @@ namespace APIEvent.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ServiceFilter(typeof(AssureReservationExistActionFilter))]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         public IActionResult UpdateReservation(long idReservation, EventReservation eventReservation)
         {
             if (!_reservationsService.UpdateReservation(idReservation, eventReservation))
@@ -89,13 +87,13 @@ namespace APIEvent.Controllers
         [HttpPut("/Reservations / quantity")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
+        [ServiceFilter(typeof(AssureReservationExistActionFilter))]
+        [Authorize(Roles = "admin")]
         public IActionResult UpdateReservationQuantity(long idReservation, long quantity)
         {
             if (!_reservationsService.UpdateReservationQuantity(idReservation, quantity))
             {
-                return NotFound();
+                return BadRequest();
             }
             return NoContent();
         }
@@ -103,8 +101,7 @@ namespace APIEvent.Controllers
         [HttpDelete("/Reservations")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteReservation(long idReservation)
         {
             if (!_reservationsService.DeleteReservation(idReservation))

@@ -76,6 +76,8 @@ builder.Services.AddScoped<IReservationsRepository, ReservationsRepository>();
 builder.Services.AddScoped<AllowDeletEventActionFilter>();
 builder.Services.AddScoped<AssureEventExistActionFilter>();
 builder.Services.AddScoped<AssureReservationExistActionFilter>();
+builder.Services.AddScoped<AssureEventNotExistActionFilter>();
+builder.Services.AddScoped<AssureReservationNotExistActionFilter>();
 
 
 var app = builder.Build();

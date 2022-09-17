@@ -87,8 +87,8 @@ namespace APIEvent.Controllers
         [HttpPost ("/Events")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
+        [ServiceFilter(typeof(AssureEventNotExistActionFilter))]
+        [Authorize(Roles = "admin")]
         public ActionResult<CityEvent> PostEvents(CityEvent cityEvent)
         {
             if (!_eventsService.InsertEvent(cityEvent))
@@ -102,8 +102,7 @@ namespace APIEvent.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ServiceFilter(typeof(AssureEventExistActionFilter))]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         public IActionResult UpdateEvent (long IdEvent, CityEvent cityEvent)
         {
             if (!_eventsService.UpdateEvent(IdEvent,cityEvent))
@@ -117,8 +116,7 @@ namespace APIEvent.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ServiceFilter(typeof(AllowDeletEventActionFilter))]
-        //[Authorize(Roles = "admin")]
-        [AllowAnonymous]
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteEvent(long idEvent)
         {
             if (!_eventsService.DeleteEvent(idEvent))
