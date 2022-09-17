@@ -1,6 +1,6 @@
 # ProjetoFinalWebIII | Moddulo Programação WebIII 
 
-Docente: Amanda Mantovani
+Docente: Amanda Mantovani | https://github.com/AmandaMantovani
 
 Enunciado
 
