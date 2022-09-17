@@ -1,4 +1,4 @@
-# ProjetoFinalWebIII Moddulo Programação WebIII 
+# ProjetoFinalWebIII | Moddulo Programação WebIII 
 
 Docente: Amanda Mantovani
 
@@ -48,3 +48,22 @@ Utilize para autenticação os seguintes parametros:
 Audience = "APIEvents.com"
 Issuer = "APIClientes.com"
 key = "he0ErCNloe4J7Id0Ry2SEDg09lKkZkfsRiGsdX_vgEg"
+
+# Como fazer o programa funcionar
+
+Clone o repositório, e abra no VisualStudio. Crie um arquivo appsettings.json com as seguintes informações: nome do servidor, base de dados, logine
+e senha. Seguindo o exemplo abaixo:
+
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": {
+    "DefaultConnection": "Server= servidor; Database= base de dados; User Id= usuário; Password= senha; Encrypt=False"
+  }
+}
+
