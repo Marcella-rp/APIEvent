@@ -1,4 +1,4 @@
-# ProjetoFinal | Moddulo Programação WebIII 
+# ProjetoFinal | Módulo Programação WebIII 
 
 Docente: Amanda Mantovani | https://github.com/AmandaMantovani
 
