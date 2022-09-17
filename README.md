@@ -1,4 +1,4 @@
-# ProjetoFinal | Moddulo Programação WebIII 
+# ProjetoFinal | Módulo Programação WebIII 
 
 Docente: Amanda Mantovani | https://github.com/AmandaMantovani
 
@@ -14,21 +14,21 @@ Trate as exceções que forem necessárias.
 
 Esta API deverá ter um cadastro do evento e um cadastro de reservas. Siga a estrutura apresentada abaixo:
 CityEvent:
-IdEvent             long         incremento PK
-Title               string       not null
-Description         string       null
-DateHourEvent       DateTime     not null
-Local               string       not null
-Address             string       null
-Price               decimal      null
-Status              bit          not null
+- IdEvent             long         incremento PK
+- Title               string       not null
+- Description         string       null
+- DateHourEvent       DateTime     not null
+- Local               string       not null
+- Address             string       null
+- Price               decimal      null
+- Status              bit          not null
 
 EventReservation:
-IdReservation       long        incremento PK
-IdEvent             long        not null FK
-PersonName          string      not null
-Quantity            long        not null
-CityEvent:
+- IdReservation       long        incremento PK
+- IdEvent             long        not null FK
+- PersonName          string      not null
+- Quantity            long        not null
+- CityEvent:
 
 Para o CityEvent, construa os métodos:
 - Inclusão de um novo evento; *Autenticação e Autorização admin
