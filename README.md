@@ -51,7 +51,7 @@ key = "he0ErCNloe4J7Id0Ry2SEDg09lKkZkfsRiGsdX_vgEg"
 
 # Como fazer o programa funcionar
 
-Clone o repositório, e abra no VisualStudio. Crie um arquivo appsettings.json com as seguintes informações: nome do servidor, base de dados, logine
+Clone o repositório, e abra no VisualStudio. Será necessário uma cgave de acesso e um token. Crie um arquivo appsettings.json com as seguintes informações: nome do servidor, base de dados, logine
 e senha. Seguindo o exemplo abaixo:
 
 {
